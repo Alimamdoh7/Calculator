@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 00000c1e  00000000  00000000  00002c02  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000ffa  00000000  00000000  00003820  2**0
+  8 .debug_line   00001004  00000000  00000000  00003820  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000031c  00000000  00000000  0000481c  2**2
+  9 .debug_frame  0000031c  00000000  00000000  00004824  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000007da  00000000  00000000  00004b38  2**0
+ 10 .debug_str    000007cb  00000000  00000000  00004b40  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001211  00000000  00000000  00005312  2**0
+ 11 .debug_loc    00001211  00000000  00000000  0000530b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000110  00000000  00000000  00006523  2**0
+ 12 .debug_ranges 00000110  00000000  00000000  0000651c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -628,13 +628,13 @@ void MulDiv_Sequence (void)
  3c4:	91 c0       	rjmp	.+290    	; 0x4e8 <__LOCK_REGION_LENGTH__+0xe8>
  3c6:	80 e0       	ldi	r24, 0x00	; 0
 	{
-		if (Operations[i] == '*' && Operations[i+1]== '/')
+		if (Operations[i] == 'x' && Operations[i+1]== '/')
  3c8:	90 e0       	ldi	r25, 0x00	; 0
  3ca:	fc 01       	movw	r30, r24
  3cc:	e0 54       	subi	r30, 0x40	; 64
  3ce:	ff 4f       	sbci	r31, 0xFF	; 255
  3d0:	20 81       	ld	r18, Z
- 3d2:	2a 32       	cpi	r18, 0x2A	; 42
+ 3d2:	28 37       	cpi	r18, 0x78	; 120
  3d4:	69 f5       	brne	.+90     	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
  3d6:	fc 01       	movw	r30, r24
  3d8:	e0 54       	subi	r30, 0x40	; 64
@@ -644,14 +644,14 @@ void MulDiv_Sequence (void)
  3e0:	09 f0       	breq	.+2      	; 0x3e4 <MulDiv_Sequence+0x2c>
  3e2:	53 c0       	rjmp	.+166    	; 0x48a <__LOCK_REGION_LENGTH__+0x8a>
 		{
-			while (Operations[i] == '*' && Operations[i+1] == '/')
+			while (Operations[i] == 'x' && Operations[i+1] == '/')
  3e4:	80 91 b7 00 	lds	r24, 0x00B7	; 0x8000b7 <i>
  3e8:	90 e0       	ldi	r25, 0x00	; 0
  3ea:	fc 01       	movw	r30, r24
  3ec:	e0 54       	subi	r30, 0x40	; 64
  3ee:	ff 4f       	sbci	r31, 0xFF	; 255
  3f0:	20 81       	ld	r18, Z
- 3f2:	2a 32       	cpi	r18, 0x2A	; 42
+ 3f2:	28 37       	cpi	r18, 0x78	; 120
  3f4:	09 f0       	breq	.+2      	; 0x3f8 <MulDiv_Sequence+0x40>
  3f6:	6e c0       	rjmp	.+220    	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
  3f8:	fc 01       	movw	r30, r24
@@ -669,16 +669,16 @@ void MulDiv_Sequence (void)
 {
 	for (i=0 ; i < op_cntr ; i++)
 	{
-		if (Operations[i] == '*' && Operations[i+1]== '/')
+		if (Operations[i] == 'x' && Operations[i+1]== '/')
 		{
-			while (Operations[i] == '*' && Operations[i+1] == '/')
+			while (Operations[i] == 'x' && Operations[i+1] == '/')
  40e:	80 91 b7 00 	lds	r24, 0x00B7	; 0x8000b7 <i>
  412:	90 e0       	ldi	r25, 0x00	; 0
  414:	fc 01       	movw	r30, r24
  416:	e0 54       	subi	r30, 0x40	; 64
  418:	ff 4f       	sbci	r31, 0xFF	; 255
  41a:	20 81       	ld	r18, Z
- 41c:	2a 32       	cpi	r18, 0x2A	; 42
+ 41c:	28 37       	cpi	r18, 0x78	; 120
  41e:	09 f0       	breq	.+2      	; 0x422 <__LOCK_REGION_LENGTH__+0x22>
  420:	59 c0       	rjmp	.+178    	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
  422:	fc 01       	movw	r30, r24
@@ -693,7 +693,7 @@ void MulDiv_Sequence (void)
 				Division();
 			}
 		}
-		else if (Operations[i] == '/' && Operations[i+1] == '*')
+		else if (Operations[i] == '/' && Operations[i+1] == 'x')
  430:	2f 32       	cpi	r18, 0x2F	; 47
  432:	09 f0       	breq	.+2      	; 0x436 <__LOCK_REGION_LENGTH__+0x36>
  434:	4f c0       	rjmp	.+158    	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
@@ -701,10 +701,10 @@ void MulDiv_Sequence (void)
  438:	e0 54       	subi	r30, 0x40	; 64
  43a:	ff 4f       	sbci	r31, 0xFF	; 255
  43c:	81 81       	ldd	r24, Z+1	; 0x01
- 43e:	8a 32       	cpi	r24, 0x2A	; 42
+ 43e:	88 37       	cpi	r24, 0x78	; 120
  440:	b9 f5       	brne	.+110    	; 0x4b0 <__LOCK_REGION_LENGTH__+0xb0>
 		{
-			while (Operations [i] == '/' && Operations[i+1] == '*')
+			while (Operations [i] == '/' && Operations[i+1] == 'x')
  442:	80 91 b7 00 	lds	r24, 0x00B7	; 0x8000b7 <i>
  446:	90 e0       	ldi	r25, 0x00	; 0
  448:	fc 01       	movw	r30, r24
@@ -718,7 +718,7 @@ void MulDiv_Sequence (void)
  458:	e0 54       	subi	r30, 0x40	; 64
  45a:	ff 4f       	sbci	r31, 0xFF	; 255
  45c:	81 81       	ldd	r24, Z+1	; 0x01
- 45e:	8a 32       	cpi	r24, 0x2A	; 42
+ 45e:	88 37       	cpi	r24, 0x78	; 120
  460:	c9 f5       	brne	.+114    	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
 			{
 				Division();
@@ -728,9 +728,9 @@ void MulDiv_Sequence (void)
 				Division();
 			}
 		}
-		else if (Operations[i] == '/' && Operations[i+1] == '*')
+		else if (Operations[i] == '/' && Operations[i+1] == 'x')
 		{
-			while (Operations [i] == '/' && Operations[i+1] == '*')
+			while (Operations [i] == '/' && Operations[i+1] == 'x')
  46a:	80 91 b7 00 	lds	r24, 0x00B7	; 0x8000b7 <i>
  46e:	90 e0       	ldi	r25, 0x00	; 0
  470:	fc 01       	movw	r30, r24
@@ -743,21 +743,21 @@ void MulDiv_Sequence (void)
  47e:	e0 54       	subi	r30, 0x40	; 64
  480:	ff 4f       	sbci	r31, 0xFF	; 255
  482:	81 81       	ldd	r24, Z+1	; 0x01
- 484:	8a 32       	cpi	r24, 0x2A	; 42
+ 484:	88 37       	cpi	r24, 0x78	; 120
  486:	69 f3       	breq	.-38     	; 0x462 <__LOCK_REGION_LENGTH__+0x62>
  488:	25 c0       	rjmp	.+74     	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
 		}
 		else 
 		{
-			if (Operations[i] == '*')
+			if (Operations[i] == 'x')
 			{
-				while (Operations [i] == '*')
+				while (Operations [i] == 'x')
  48a:	e0 91 b7 00 	lds	r30, 0x00B7	; 0x8000b7 <i>
  48e:	f0 e0       	ldi	r31, 0x00	; 0
  490:	e0 54       	subi	r30, 0x40	; 64
  492:	ff 4f       	sbci	r31, 0xFF	; 255
  494:	80 81       	ld	r24, Z
- 496:	8a 32       	cpi	r24, 0x2A	; 42
+ 496:	88 37       	cpi	r24, 0x78	; 120
  498:	e9 f4       	brne	.+58     	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
 				{
 					Multiplication();
@@ -765,15 +765,15 @@ void MulDiv_Sequence (void)
 		}
 		else 
 		{
-			if (Operations[i] == '*')
+			if (Operations[i] == 'x')
 			{
-				while (Operations [i] == '*')
+				while (Operations [i] == 'x')
  49e:	e0 91 b7 00 	lds	r30, 0x00B7	; 0x8000b7 <i>
  4a2:	f0 e0       	ldi	r31, 0x00	; 0
  4a4:	e0 54       	subi	r30, 0x40	; 64
  4a6:	ff 4f       	sbci	r31, 0xFF	; 255
  4a8:	80 81       	ld	r24, Z
- 4aa:	8a 32       	cpi	r24, 0x2A	; 42
+ 4aa:	88 37       	cpi	r24, 0x78	; 120
  4ac:	b1 f3       	breq	.-20     	; 0x49a <__LOCK_REGION_LENGTH__+0x9a>
  4ae:	12 c0       	rjmp	.+36     	; 0x4d4 <__LOCK_REGION_LENGTH__+0xd4>
 					Multiplication();
@@ -969,15 +969,15 @@ void App (void)
 		 LCD_WriteChar(Key_Value);
  5d6:	0e 94 dc 03 	call	0x7b8	; 0x7b8 <LCD_WriteChar>
 
-		 if (Key_Value == '*' || Key_Value == '/' || Key_Value == '+' || Key_Value == '-')
+		 if (Key_Value == 'x' || Key_Value == '/' || Key_Value == '+' || Key_Value == '-')
  5da:	80 91 bf 00 	lds	r24, 0x00BF	; 0x8000bf <Key_Value>
- 5de:	96 ed       	ldi	r25, 0xD6	; 214
- 5e0:	98 0f       	add	r25, r24
- 5e2:	92 30       	cpi	r25, 0x02	; 2
- 5e4:	20 f0       	brcs	.+8      	; 0x5ee <App+0x24>
- 5e6:	98 2f       	mov	r25, r24
- 5e8:	9d 7f       	andi	r25, 0xFD	; 253
- 5ea:	9d 32       	cpi	r25, 0x2D	; 45
+ 5de:	88 37       	cpi	r24, 0x78	; 120
+ 5e0:	31 f0       	breq	.+12     	; 0x5ee <App+0x24>
+ 5e2:	98 2f       	mov	r25, r24
+ 5e4:	9b 7f       	andi	r25, 0xFB	; 251
+ 5e6:	9b 32       	cpi	r25, 0x2B	; 43
+ 5e8:	11 f0       	breq	.+4      	; 0x5ee <App+0x24>
+ 5ea:	8d 32       	cpi	r24, 0x2D	; 45
  5ec:	19 f4       	brne	.+6      	; 0x5f4 <App+0x2a>
 		 {
 			 Operations_Buttons();

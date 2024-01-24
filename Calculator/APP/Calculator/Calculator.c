@@ -69,7 +69,7 @@ void App (void)
 	 {
 		 LCD_WriteChar(Key_Value);
 
-		 if (Key_Value == '*' || Key_Value == '/' || Key_Value == '+' || Key_Value == '-')
+		 if (Key_Value == 'x' || Key_Value == '/' || Key_Value == '+' || Key_Value == '-')
 		 {
 			 Operations_Buttons();
 		 }
@@ -129,17 +129,17 @@ void MulDiv_Sequence (void)
 {
 	for (i=0 ; i < op_cntr ; i++)
 	{
-		if (Operations[i] == '*' && Operations[i+1]== '/')
+		if (Operations[i] == 'x' && Operations[i+1]== '/')
 		{
-			while (Operations[i] == '*' && Operations[i+1] == '/')
+			while (Operations[i] == 'x' && Operations[i+1] == '/')
 			{
 				Multiplication();
 				Division();
 			}
 		}
-		else if (Operations[i] == '/' && Operations[i+1] == '*')
+		else if (Operations[i] == '/' && Operations[i+1] == 'x')
 		{
-			while (Operations [i] == '/' && Operations[i+1] == '*')
+			while (Operations [i] == '/' && Operations[i+1] == 'x')
 			{
 				Division();
 			    Multiplication();
@@ -147,9 +147,9 @@ void MulDiv_Sequence (void)
 		}
 		else 
 		{
-			if (Operations[i] == '*')
+			if (Operations[i] == 'x')
 			{
-				while (Operations [i] == '*')
+				while (Operations [i] == 'x')
 				{
 					Multiplication();
 				}
