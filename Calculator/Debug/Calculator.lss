@@ -998,7 +998,6 @@ void App (void)
  602:	8d 33       	cpi	r24, 0x3D	; 61
  604:	19 f4       	brne	.+6      	; 0x60c <App+0x42>
 		 {
-			 //Calculate();
 			 Calculate();
  606:	0e 94 cb 02 	call	0x596	; 0x596 <Calculate>
  60a:	08 95       	ret

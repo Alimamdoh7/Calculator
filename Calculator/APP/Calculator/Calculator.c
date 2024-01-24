@@ -80,7 +80,6 @@ void App (void)
 		 else if (Key_Value == '=')
 		 {
 			 Calculate();
-			 Calculate();
 		 }
 		 else if (Key_Value == 'c')
 		 {
